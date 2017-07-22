@@ -1,14 +1,15 @@
 <?php
 /**
  * @package ldsprophets
- * @version 1.0
+ * @version 1.0.0
  */
 /*
 Plugin Name: LDS Prophets Functionality Plugin
 Plugin URI: http://app.circlcube.com/lds-prophets
 Description: Functionality for LDS Prophets App
 Author: Evan Mullins
-Version: 1.0
+Version: 1.0.0
+GitHub Plugin URI: https://github.com/circlecube/ldsprophets-plugin
 */
 
 
