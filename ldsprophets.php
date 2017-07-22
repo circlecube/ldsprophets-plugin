@@ -22,7 +22,7 @@ GitHub Plugin URI: https://github.com/circlecube/ldsprophets-plugin
 		// if( $hook != 'edit.php' ) 
 				// return;
 		 
-			wp_enqueue_script( 'ldsprophets_js', plugins_url( 'ldsprophets/js/script.js' , dirname(__FILE__) ), array('jquery'), '20150605' );
+			wp_enqueue_script( 'ldsprophets_js', plugin_dir_url( __FILE__ ) . 'js/script.js', array('jquery'), '20150605' );
 			
 	}
 	// Hook into the 'admin_enqueue_scripts' action
