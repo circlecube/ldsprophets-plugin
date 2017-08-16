@@ -33,5 +33,24 @@ Version: 1.0
 	}
 	//add_action( 'admin_enqueue_scripts', 'ldsprophets_styles' );
 
+	// Hook to add preexisting custom taxonomies to rest api response via plugin
+	// https://developer.wordpress.org/rest-api/extending-the-rest-api/modifying-responses/
+	add_action( 'init', 'my_custom_taxonomy_rest_support', 25 );
+	function my_custom_taxonomy_rest_support() {
+		global $wp_taxonomies;
+
+        //Here should be a list of names of the already created custom taxonomies:
+        $taxonomy_names = array(
+            'types',
+            'prophet'
+        );
+        foreach ( $taxonomy_names as $key => $taxonomy_name ) {
+            if (isset($wp_taxonomies[$taxonomy_name])) {
+                $wp_taxonomies[$taxonomy_name]->show_in_rest = true;
+                $wp_taxonomies[$taxonomy_name]->rest_base = $taxonomy_name;
+                $wp_taxonomies[$taxonomy_name]->rest_controller_class = 'WP_REST_Terms_Controller';
+            }
+        }
+    }
 	
 ?>
