@@ -1,14 +1,15 @@
 <?php
 /**
  * @package ldsprophets
- * @version 1.0
+ * @version 1.0.0
  */
 /*
 Plugin Name: LDS Prophets Functionality Plugin
 Plugin URI: http://app.circlcube.com/lds-prophets
 Description: Functionality for LDS Prophets App
 Author: Evan Mullins
-Version: 1.0
+Version: 1.0.0
+GitHub Plugin URI: https://github.com/circlecube/ldsprophets-plugin
 */
 
 
@@ -21,7 +22,7 @@ Version: 1.0
 		// if( $hook != 'edit.php' ) 
 				// return;
 		 
-			wp_enqueue_script( 'ldsprophets_js', plugins_url( 'ldsprophets/js/script.js' , dirname(__FILE__) ), array('jquery'), '20150605' );
+			wp_enqueue_script( 'ldsprophets_js', plugin_dir_url( __FILE__ ) . 'js/script.js', array('jquery'), '20150605' );
 			
 	}
 	// Hook into the 'admin_enqueue_scripts' action
@@ -65,7 +66,7 @@ Version: 1.0
     add_action( 'rest_api_init', 'cclds_register_api_hooks' );
 
     function cclds_get_all_leaders(){
-    	delete_transient('cclds_all_leaders');
+    	// delete_transient('cclds_all_leaders');
     	// Return all leader posts IDs
         if ( false === ( $json = get_transient( 'cclds_all_leaders' ) ) ) {
         	
