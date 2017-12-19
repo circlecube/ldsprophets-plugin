@@ -1,14 +1,14 @@
 <?php
 /**
  * @package ldsprophets
- * @version 1.1.0
+ * @version 1.1.4
  */
 /*
 Plugin Name: LDS Prophets Functionality Plugin
 Plugin URI: https://circlcube.com/lds-prophets/
 Description: Functionality for LDS Prophets App
 Author: Evan Mullins
-Version: 1.1.0
+Version: 1.1.4
 GitHub Plugin URI: https://github.com/circlecube/ldsprophets-plugin
 */
 
@@ -73,11 +73,26 @@ GitHub Plugin URI: https://github.com/circlecube/ldsprophets-plugin
         	$leaders = [];
 
         	$leader_args = array(
-        		'post_type' => 'leader',
-        		'posts_per_page' => -1,
-            	'orderby' => 'meta_value',
-            	'meta_key' => 'ordained_date'
-        	);
+				'post_type' => 'leader',
+				'posts_per_page' => -1,
+				'meta_query' => array(
+					'relation'	=> 'AND',
+					'ordination_clause' => array(
+						'key'		=> 'ordained_date',
+						'compare'	=> 'EXISTS',
+						'type'		=> 'DATE',
+					),
+					'seniority_clause' => array(
+						'key'		=> 'quorum_seniority',
+						'compare'	=> 'EXISTS',
+						'type'		=> 'NUMERIC',
+					),
+				),
+				'orderby'	=> array(
+					'ordination_clause'	=> 'DESC',
+					'seniority_clause'	=> 'DESC',
+				),
+			);
         	$leader_query = new WP_Query( $leader_args );
         	// The Loop
         	if ( $leader_query->have_posts() ) {
@@ -118,8 +133,7 @@ GitHub Plugin URI: https://github.com/circlecube/ldsprophets-plugin
         			$leader->initial = get_field('initial');
         			$leader->position = get_field('position');
         			$leader->birthdate = get_field('birthdate');
-        			$leader->ordained_date = get_field('ordained_date');
-        			$leader->ordinal = get_field('quorum_seniority');
+					$leader->seniority = get_field('quorum_seniority');
         			$leader->order = get_field('quorum_seniority');
         			$leader->deathdate = get_field('death_date');
         			$leader->hometown = get_field('hometown');
