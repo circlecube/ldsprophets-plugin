@@ -133,6 +133,7 @@ GitHub Plugin URI: https://github.com/circlecube/ldsprophets-plugin
         			$leader->initial = get_field('initial');
         			$leader->position = get_field('position');
         			$leader->birthdate = get_field('birthdate');
+        			$leader->ordained_date = get_field('ordained_date');
 					$leader->seniority = get_field('quorum_seniority');
         			$leader->order = get_field('quorum_seniority');
         			$leader->deathdate = get_field('death_date');
