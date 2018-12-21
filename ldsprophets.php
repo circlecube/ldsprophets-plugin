@@ -1,14 +1,14 @@
 <?php
 /**
  * @package ldsprophets
- * @version 1.1.4
+ * @version 1.1.8
  */
 /*
 Plugin Name: LDS Prophets Functionality Plugin
 Plugin URI: https://circlcube.com/lds-prophets/
 Description: Functionality for LDS Prophets App
 Author: Evan Mullins
-Version: 1.1.4
+Version: 1.1.8
 GitHub Plugin URI: https://github.com/circlecube/ldsprophets-plugin
 */
 
@@ -148,6 +148,8 @@ GitHub Plugin URI: https://github.com/circlecube/ldsprophets-plugin
         			$leader->img2 = $youth_image['sizes']['medium'];
         			$leader->groups = $groups;
         			$leader->served_with = $served_with;
+					$leader->polygamist = get_field( 'polygamist' );
+					$leader->number_of_wives = get_field( 'number_of_wives' );
 
         			array_push($leaders, $leader);
         			
